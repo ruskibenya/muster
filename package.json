@@ -1,0 +1,19 @@
+{
+  "name": "muster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon --exec 'mocha -R min' "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.2.2",
+    "mongoose": "^5.8.3",
+    "nodemon": "^2.0.2"
+  }
+}
