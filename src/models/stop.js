@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const stopSchema = new Schema({
     name:{
         type: String,
-        required:[true,'must have a name']
+        required:[true,'Must have a name!']
     },
     location:LocationSchema,
     categories: {
@@ -19,5 +19,5 @@ const stopSchema = new Schema({
     }
 });
 
-const Stop = mongoose.model('Stop',stopSchema);
-module.exports = { Stop }
+const Stop = mongoose.model('Stop', stopSchema);
+module.exports = Stop; 

@@ -7,11 +7,11 @@ const recommendationSchema = new Schema({
     stop: {
         type: Schema.Types.ObjectId,
         ref:'Stop',
-        required:[true, 'must have a Stop'],
+        required:[true, 'A Recommendation must have a Stop!'],
     },
     description: {
         type: String,
-        required: [true,'must have a description']
+        required: [true,'A Recommendation must have a description!']
     },
     images: {
         type:[ImageSchema],
@@ -19,9 +19,9 @@ const recommendationSchema = new Schema({
     },
     location: {
         type:LocationSchema,
-        required:[true,'must have a location']
+        required:[true,'A Recommendation must have a location!']
     },
 });
 
 const Recommendation = mongoose.model('Recommendation',recommendationSchema);
-module.exports = { Recommendation }
+module.exports = Recommendation;

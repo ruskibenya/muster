@@ -28,13 +28,22 @@ before((done) => {
 // add hook to run before each test runs
  beforeEach((done) => {
      // direct connection to users, comments, blogPosts collections inside db
-    const { users } = mongoose.connection.collections;
+    const { users, stops, facts, recommendations, tours } = mongoose.connection.collections;
     
     // Mongo can't drop mutliple collections at a time :/
     // drop accepts a callback function to be executed once drop is finished
     users.drop(() => {
-        // Ready to run the next test!
-        // By calling done function, tells mocha to run next test
-        done();
+        stops.drop(() => {
+            facts.drop(() => {
+                recommendations.drop(() => {
+                    tours.drop(() => {
+                        // Ready to run the next test!
+                        // By calling done function, tells mocha to run next test
+                        done();  
+                    })
+                })
+            })
+        })
+
     });
  });

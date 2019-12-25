@@ -48,8 +48,6 @@ describe('Associations', () => {
             city: "Tel Aviv",
             author: dean,
         });
-
-    
     
         joe.blogPosts.push(blogPost);
         blogPost.comments.push(comment);
