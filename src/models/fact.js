@@ -6,11 +6,11 @@ const factSchema = new Schema({
     stop: {
         type: Schema.Types.ObjectId,
         ref:'Stop',
-        required:[true, 'must have a Stop'],
+        required:[true, 'A Fact must have a Stop!'],
     },
     description: {
         type: String,
-        required: [true,'must have a description']
+        required: [true,'A Fact must have a description!']
     },
     images: {
         type:[ImageSchema],
@@ -19,4 +19,4 @@ const factSchema = new Schema({
 });
 
 const Fact = mongoose.model('Fact',factSchema);
-module.exports = { Fact }
+module.exports = Fact;
