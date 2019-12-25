@@ -1,4 +1,4 @@
-const { User } = require('../../models/user');
+const  User  = require('../../models/user');
 
 //middleware to check if the user is authenticated by querying its token.
 // if authenticated execute the "next" method

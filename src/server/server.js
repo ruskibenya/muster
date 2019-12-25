@@ -14,12 +14,12 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // Models
-const { User } = require('./models/user');
+const User  = require('../models/user');
 
 
 //middlwares
 const {auth} = require('./middleware/auth');
-const {admin} = require('./middleware/admin');
+
 
 //=================================
 //           USERS
@@ -50,7 +50,7 @@ app.get('/api/users/logout',auth,(req,res)=>{
 
 app.post('/api/users/register',(req,res)=>{
     const user = new User(req.body);
-
+    
     user.save((err,doc)=>{
         if(err) return res.json({success:false,err});
         res.status(200).json({
