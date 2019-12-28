@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 mongoose.set('useFindAndModify', false);
 
 // es6 implementation of promises
@@ -39,7 +38,7 @@ before((done) => {
                     tours.drop(() => {
                         // Ready to run the next test!
                         // By calling done function, tells mocha to run next test
-                        done();  
+                        done();
                     })
                 })
             })

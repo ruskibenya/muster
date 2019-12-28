@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const SALT_I = 10;
-require('dotenv').config();
+// const bcrypt = require('bcrypt');
+// const jwt = require('jsonwebtoken');
+// const SALT_I = 10;
+// require('dotenv').config();
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({

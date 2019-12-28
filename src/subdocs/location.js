@@ -22,4 +22,4 @@ const LocationSchema = new Schema({
 });
 
 
-module.exports = { LocationSchema }
+module.exports = LocationSchema;

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const RecommendationSchema = require('../models/recommendation');
 
 const Schema = mongoose.Schema;
 
@@ -32,4 +31,4 @@ const TourStopSchema = new Schema({
 });
 
 
-module.exports = { TourStopSchema }
+module.exports = TourStopSchema;
