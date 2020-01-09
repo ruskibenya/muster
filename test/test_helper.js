@@ -10,7 +10,7 @@ before((done) => {
     // connect to mongo, explicitly tell which server of mongo (local server)
     // tells to connect to users_test database in our local instance of mongodb
     // check what useNewUrlParser and useUnifiedTopology do, added because of deprication errors
-    mongoose.connect('mongodb://localhost/muster_test', { useNewUrlParser: true, useUnifiedTopology: true });
+    mongoose.connect('mongodb://localhost/muster_test', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
     // when mongoose has finished trying  to make a connection 
     mongoose.connection
         // one time, when mongoose emits event 'open', run this code
@@ -27,7 +27,7 @@ before((done) => {
 // add hook to run before each test runs
  beforeEach((done) => {
      // direct connection to users, comments, blogPosts collections inside db
-    const { users, stops, facts, recommendations, tours } = mongoose.connection.collections;
+    const { users, stops, facts, recommendations, tours, tourinstances } = mongoose.connection.collections;
     
     // Mongo can't drop mutliple collections at a time :/
     // drop accepts a callback function to be executed once drop is finished
@@ -36,9 +36,12 @@ before((done) => {
             facts.drop(() => {
                 recommendations.drop(() => {
                     tours.drop(() => {
-                        // Ready to run the next test!
-                        // By calling done function, tells mocha to run next test
-                        done();
+                        tourinstances.drop(() => {
+                            done();
+                            // Ready to run the next test!
+                            // By calling done function, tells mocha to run next test
+
+                        })
                     })
                 })
             })

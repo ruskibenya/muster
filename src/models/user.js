@@ -31,6 +31,10 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    tours: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Tour'
+    }],
     token:{
         type:String,
     }

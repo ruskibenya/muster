@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const TourStopSchema = new Schema({
     stop: {
         type: Schema.Types.ObjectId,
-        ref:'Stop',
+        ref: 'Stop',
         required:[true, 'must have a Stop'],
     },
     mandatory: {
@@ -22,11 +22,11 @@ const TourStopSchema = new Schema({
     },
     facts: [{
         type: Schema.Types.ObjectId,
-        ref:'Fact'
+        ref: 'Fact'
     }],
     recommendations: [{
         type: Schema.Types.ObjectId,
-        ref:'Recommendation'
+        ref: 'Recommendation'
     }]
 });
 
