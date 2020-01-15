@@ -18,5 +18,5 @@ const factSchema = new Schema({
     }
 });
 
-const Fact = mongoose.model('Fact',factSchema);
+const Fact = mongoose.model('Fact', factSchema);
 module.exports = Fact;

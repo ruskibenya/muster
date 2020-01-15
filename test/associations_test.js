@@ -13,22 +13,22 @@ describe('Associations', () => {
     let guide, touristOne, touristTwo, coolTour, firstStop, funFact, goodRec, todayCoolTour, today;
     beforeEach((done) => {
         guide = new User({ 
-            first_name: "Dean",
-            last_name: "Shmuel",
+            firstName: "Dean",
+            lastName: "Shmuel",
             email: "dean@gmail.com",
             password: "12345",
         });
 
         touristOne = new User({ 
-            first_name: "Ben",
-            last_name: "Shmuel",
+            firstName: "Ben",
+            lastName: "Shmuel",
             email: "ben@gmail.com",
             password: "12345",
         });
 
         touristTwo = new User({ 
-            first_name: "Gabi",
-            last_name: "Shmuel",
+            firstName: "Gabi",
+            lastName: "Shmuel",
             email: "gabi@gmail.com",
             password: "12345",
         });
@@ -82,7 +82,7 @@ describe('Associations', () => {
             name: "Awesome New Tour",
             city: "Tel Aviv",
             // author: guide,
-            tour_stops: []
+            tourStops: []
         });
 
         today = new Date();
@@ -90,7 +90,7 @@ describe('Associations', () => {
         todayCoolTour = new TourInstance({
             tour: coolTour,
             guide: guide,
-            start_time: today,
+            startTime: today,
             participants: [touristTwo]
         });
         
@@ -101,13 +101,13 @@ describe('Associations', () => {
         firstTourStop.facts.push(funFact);
         firstTourStop.recommendations.push(goodRec);
         firstTourStop.recommendations.push(secondRec);
-        coolTour.tour_stops.push(firstTourStop);
+        coolTour.tourStops.push(firstTourStop);
         guide.tours.push(coolTour);
 
         // if we need to save/update/delete multiple objects 
         // then we don't know which one will return the promise last,  to  call done()
         // so we need to use Promise.all
-        Promise.all([ todayCoolTour.save(), guide.save(), coolTour.save(), firstStop.save(), goodRec.save(), secondRec.save() ])
+        Promise.all([ todayCoolTour.save(), guide.save(), coolTour.save(), firstStop.save(), funFact.save(), goodRec.save(), secondRec.save() ])
             .then(() => done());
     });
 
@@ -116,7 +116,7 @@ describe('Associations', () => {
         // find a user with the name of Dean
         // load up any associated tours that Dean has
         // then call the function we pass to then / execute the query
-        User.findOne({ first_name: 'Dean' })
+        User.findOne({ firstName: 'Dean' })
             // resolves the tours relationship in User model
             .populate('tours')
             .then((user) =>  {
@@ -127,34 +127,38 @@ describe('Associations', () => {
     })
 
     it('saves a full relation graph', (done) => {
-        User.findOne({ first_name: 'Dean' })
+        User.findOne({ firstName: 'Dean' })
         .populate({
-            // in that user find the tours property and load up all tours
-            path: 'tours',
-            // inside of all those tours, find the tourstops property and load all associated stops
-            // populate: {
-            //     path: 'tour_stops',
-            //     // model: 'Stop',
-            //     // like inception we can go further!
-            //     populate: {
-            //         path: 'stop',
-            //         model: 'Stop'
-            //     }
-            // },
+            path: "tours",
             populate: {
-                path: 'tour_stops.facts',
-                model: 'Fact'
-            },
-            populate: {
-                path: 'tour_stops.stop',
-                model: 'Stop'
+              path: "tourStops.stop",
+              model: Stop
             }
-        })
+          })
+          .populate({
+            path: "tours",
+            populate: {
+              path: "tourStops.facts",
+              model: Fact
+            }
+          })
+          .populate({
+            path: "tours",
+            populate: {
+              path: "tourStops.recommendations",
+              model: Recommendation
+            }
+          })
         .then((user) => {
             // console.log(user.tours[0].tour_stops[0].stop);
-            console.log(user.tours[0].tour_stops[0]);
-            // console.log(user.tours[0])
-            // assert(user.first_name === 'Dean' );
+            console.log(user.tours[0].tourStops[0]);
+            // console.log(Array.isArray(user.tours[0].tour_stops[0].facts))
+            assert(user.firstName === 'Dean' );
+            assert(user.tours.length === 1);
+            assert(user.tours[0].name === "Awesome New Tour");
+            assert(user.tours[0].tourStops[0].stop.name === 'Jaffa Clock Tower');
+            assert(user.tours[0].tourStops[0].recommendations[1].description === "This is a second rec!")
+            // assert(user.tours[0])
             // assert(user.blogPosts[0].title === 'JS is Great');
             // assert(user.blogPosts[0].comments[0].content === 'Congrats on great post!' );
             // assert(user.blogPosts[0].comments[0].user.name === 'Joe' )

@@ -17,17 +17,17 @@ const userSchema = new Schema({
         required: [true, 'Password is required!' ],
         minlength:5,
     },
-    first_name:{
+    firstName:{
         required: [true, 'First name is required!' ],
         type:String,
         maxlength:100,
     },
-    last_name:{
+    lastName:{
         required: [true, 'Last name is required!' ],
         type:String,
         maxlength:100,
     },
-    tour_guide:{
+    tourGuide:{
         type: Boolean,
         default: false
     },

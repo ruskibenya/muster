@@ -18,7 +18,7 @@ const tourInstanceSchema = new Schema({
         ref:'User',
         default:[]
     }],
-    start_time:{
+    startTime:{
         type: Date,
         required:[true,'must have a starting time']
     }

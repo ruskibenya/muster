@@ -17,7 +17,7 @@ const tourSchema = new Schema({
         type: String,
         required: [true, 'City is required!']
     },
-    tour_stops:[TourStopSchema],
+    tourStops:[TourStopSchema]
 });
 
 const Tour = mongoose.model('Tour', tourSchema);

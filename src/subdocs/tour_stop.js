@@ -12,7 +12,7 @@ const TourStopSchema = new Schema({
         type:Boolean,
         default: false
     },
-    check_in_time: {
+    checkInTime: {
         type: Number,
         default: 0
     },
