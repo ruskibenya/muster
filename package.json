@@ -1,19 +1,33 @@
 {
-  "name": "muster",
-  "version": "1.0.0",
-  "description": "",
+  "name": "muster_alpha",
+  "version": "0.0.1",
+  "description": "A test of backend for Yalla Guides.",
   "main": "index.js",
   "scripts": {
     "test": "nodemon --exec 'mocha -R min' "
   },
-  "author": "",
+  "author": "Benjamin Aronov",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.7",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^6.2.2",
-    "mongoose": "^5.8.3",
+    "mongoose": "^5.8.9"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruskibenya/muster.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ruskibenya/muster/issues"
+  },
+  "homepage": "https://github.com/ruskibenya/muster#readme"
 }

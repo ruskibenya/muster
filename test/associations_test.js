@@ -135,20 +135,20 @@ describe('Associations', () => {
               model: Stop
             }
           })
-          .populate({
+        .populate({
             path: "tours",
             populate: {
               path: "tourStops.facts",
               model: Fact
             }
-          })
-          .populate({
+        })
+        .populate({
             path: "tours",
             populate: {
               path: "tourStops.recommendations",
               model: Recommendation
             }
-          })
+        })
         .then((user) => {
             // console.log(user.tours[0].tour_stops[0].stop);
             console.log(user.tours[0].tourStops[0]);
@@ -157,7 +157,7 @@ describe('Associations', () => {
             assert(user.tours.length === 1);
             assert(user.tours[0].name === "Awesome New Tour");
             assert(user.tours[0].tourStops[0].stop.name === 'Jaffa Clock Tower');
-            assert(user.tours[0].tourStops[0].recommendations[1].description === "This is a second rec!")
+            assert(user.tours[0].tourStops[0].recommendations[1].description === "This is a second rec!");
             // assert(user.tours[0])
             // assert(user.blogPosts[0].title === 'JS is Great');
             // assert(user.blogPosts[0].comments[0].content === 'Congrats on great post!' );
