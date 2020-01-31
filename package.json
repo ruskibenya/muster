@@ -4,7 +4,7 @@
   "description": "A test of backend for Yalla Guides.",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon --exec 'mocha -R min' "
+    "test": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min'"
   },
   "author": "Benjamin Aronov",
   "license": "ISC",
@@ -20,7 +20,9 @@
     "test": "test"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "body-parser": "^1.19.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
   },
   "repository": {
     "type": "git",
