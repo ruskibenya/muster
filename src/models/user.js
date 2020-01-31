@@ -5,6 +5,14 @@ const mongoose = require('mongoose');
 // require('dotenv').config();
 const Schema = mongoose.Schema;
 
+// const PointSchema = require('../subdocs/point');
+
+
+const PointSchema = new Schema({
+    type: { type: String, default: 'Point'},
+    coordinates: { type: [Number], index: '2dsphere' }
+})
+
 const userSchema = new Schema({
     email:{
         type:String,
@@ -37,7 +45,8 @@ const userSchema = new Schema({
     }],
     token:{
         type:String,
-    }
+    },
+    geometry: PointSchema
 });
 
 // if the user changes the password, we rehash a new password to our DB
