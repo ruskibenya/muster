@@ -1,5 +1,5 @@
 // const assert = require('assert');
-// const Stop = require('../src/models/stop');
+// const Stop = require('../../src/models/stop');
 
 // describe('Creating stops', ()=> {
 //     it('saves a user', (done) => {

@@ -8,7 +8,7 @@ const stopSchema = new Schema({
         type: String,
         required:[true,'Must have a name!']
     },
-    location:LocationSchema,
+    location: LocationSchema,
     categories: {
         type: [String],
         default:[]

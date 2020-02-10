@@ -3,11 +3,11 @@ const TourStopSchema = require('../subdocs/tour_stop');
 const Schema = mongoose.Schema;
 
 const tourSchema = new Schema({
-    // author:{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User',
-    //     required:[true, 'Tour must have an author!']
-    // },
+    author:{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required:[true, 'Tour must have an author!']
+    },
     name: {
         type:String,
         required:[true,'Name is required!'],
